@@ -57,6 +57,7 @@ class TeamYearByYearStats(Endpoint):
         per_mode_simple=PerModeSimple.default,
         season_type_all_star=SeasonTypeAllStar.default,
         proxy=None,
+        verify=None,
         headers=None,
         timeout=30,
         get_request=True,
@@ -78,8 +79,9 @@ class TeamYearByYearStats(Endpoint):
         self.nba_response = NBAStatsHTTP().send_api_request(
             endpoint=self.endpoint,
             parameters=self.parameters,
-            proxy=self.proxy,
-            headers=self.headers,
+            proxy=None,
+            verify=None,
+            headers=None,
             timeout=self.timeout,
         )
         self.load_response()

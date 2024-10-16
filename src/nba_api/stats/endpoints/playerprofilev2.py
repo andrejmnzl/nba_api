@@ -391,11 +391,13 @@ class PlayerProfileV2(Endpoint):
         per_mode36=PerMode36.default,
         league_id_nullable=LeagueIDNullable.default,
         proxy=None,
+        verify=None,
         headers=None,
         timeout=30,
         get_request=True,
     ):
         self.proxy = proxy
+        self.verify = verify
         if headers is not None:
             self.headers = headers
         self.timeout = timeout
@@ -412,6 +414,7 @@ class PlayerProfileV2(Endpoint):
             endpoint=self.endpoint,
             parameters=self.parameters,
             proxy=self.proxy,
+            verify=self.verify,
             headers=self.headers,
             timeout=self.timeout,
         )

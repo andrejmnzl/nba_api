@@ -65,7 +65,15 @@ class PlayByPlay(Endpoint):
     team_stats = None
     headers = None
 
-    def __init__(self, game_id, proxy=None, headers=None, timeout=30, get_request=True):
+    def __init__(
+        self,
+        game_id,
+        proxy=None,
+        verify=None,
+        headers=None,
+        timeout=30,
+        get_request=True,
+    ):
         self.game_id = game_id
         self.proxy = proxy
         if headers is not None:
@@ -73,13 +81,19 @@ class PlayByPlay(Endpoint):
         self.timeout = timeout
         if get_request:
             self.get_request()
+        self.verify = verify
 
     def get_request(self):
+        request_verify = None
+        if self.verify:
+            request_verify = self.verify
+
         self.nba_response = NBALiveHTTP().send_api_request(
             endpoint=self.endpoint_url.format(game_id=self.game_id),
             parameters={},
-            proxy=self.proxy,
-            headers=self.headers,
+            proxy=None,
+            verify=request_verify,
+            headers=None,
             timeout=self.timeout,
         )
         self.load_response()

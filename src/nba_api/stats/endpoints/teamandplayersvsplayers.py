@@ -209,6 +209,7 @@ class TeamAndPlayersVsPlayers(Endpoint):
         vs_conference_nullable=ConferenceNullable.default,
         vs_division_nullable=DivisionNullable.default,
         proxy=None,
+        verify=None,
         headers=None,
         timeout=30,
         get_request=True,
@@ -261,8 +262,9 @@ class TeamAndPlayersVsPlayers(Endpoint):
         self.nba_response = NBAStatsHTTP().send_api_request(
             endpoint=self.endpoint,
             parameters=self.parameters,
-            proxy=self.proxy,
-            headers=self.headers,
+            proxy=None,
+            verify=None,
+            headers=None,
             timeout=self.timeout,
         )
         self.load_response()

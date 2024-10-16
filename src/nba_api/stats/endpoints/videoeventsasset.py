@@ -17,6 +17,7 @@ class VideoEventsAsset(Endpoint):
         game_id,
         game_event_id=0,
         proxy=None,
+        verify=None,
         headers=None,
         timeout=30,
         get_request=True,
@@ -33,8 +34,9 @@ class VideoEventsAsset(Endpoint):
         self.nba_response = NBAStatsHTTP().send_api_request(
             endpoint=self.endpoint,
             parameters=self.parameters,
-            proxy=self.proxy,
-            headers=self.headers,
+            proxy=None,
+            verify=None,
+            headers=None,
             timeout=self.timeout,
         )
         self.load_response()

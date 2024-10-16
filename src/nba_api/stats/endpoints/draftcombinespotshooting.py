@@ -72,11 +72,13 @@ class DraftCombineSpotShooting(Endpoint):
         league_id=LeagueID.default,
         season_year=SeasonYear.default,
         proxy=None,
+        verify=None,
         headers=None,
         timeout=30,
         get_request=True,
     ):
         self.proxy = proxy
+        self.verify = verify
         if headers is not None:
             self.headers = headers
         self.timeout = timeout
@@ -89,6 +91,7 @@ class DraftCombineSpotShooting(Endpoint):
             endpoint=self.endpoint,
             parameters=self.parameters,
             proxy=self.proxy,
+            verify=self.verify,
             headers=self.headers,
             timeout=self.timeout,
         )

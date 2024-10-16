@@ -40,11 +40,13 @@ class DraftHistory(Endpoint):
         team_id_nullable="",
         topx_nullable="",
         proxy=None,
+        verify=None,
         headers=None,
         timeout=30,
         get_request=True,
     ):
         self.proxy = proxy
+        self.verify = verify
         if headers is not None:
             self.headers = headers
         self.timeout = timeout
@@ -66,6 +68,7 @@ class DraftHistory(Endpoint):
             endpoint=self.endpoint,
             parameters=self.parameters,
             proxy=self.proxy,
+            verify=self.verify,
             headers=self.headers,
             timeout=self.timeout,
         )

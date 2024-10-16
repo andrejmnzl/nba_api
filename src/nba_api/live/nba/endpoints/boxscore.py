@@ -311,12 +311,21 @@ class BoxScore(Endpoint):
     nba_response = None
     officials = None
 
-    def __init__(self, game_id, proxy=None, headers=None, timeout=30, get_request=True):
+    def __init__(
+        self,
+        game_id,
+        proxy=None,
+        verify=None,
+        headers=None,
+        timeout=30,
+        get_request=True,
+    ):
         self.game_id = game_id
         self.proxy = proxy
         if headers is not None:
             self.headers = headers
         self.timeout = timeout
+        self.verify = verify
         if get_request:
             self.get_request()
 
@@ -324,8 +333,9 @@ class BoxScore(Endpoint):
         self.nba_response = NBALiveHTTP().send_api_request(
             endpoint=self.endpoint_url.format(game_id=self.game_id),
             parameters={},
-            proxy=self.proxy,
-            headers=self.headers,
+            proxy=None,
+            verify=None,
+            headers=None,
             timeout=self.timeout,
         )
         self.load_response()

@@ -47,7 +47,15 @@ class TeamDetails(Endpoint):
     team_stats = None
     headers = None
 
-    def __init__(self, team_id, proxy=None, headers=None, timeout=30, get_request=True):
+    def __init__(
+        self,
+        team_id,
+        proxy=None,
+        verify=None,
+        headers=None,
+        timeout=30,
+        get_request=True,
+    ):
         self.proxy = proxy
         if headers is not None:
             self.headers = headers
@@ -60,8 +68,9 @@ class TeamDetails(Endpoint):
         self.nba_response = NBAStatsHTTP().send_api_request(
             endpoint=self.endpoint,
             parameters=self.parameters,
-            proxy=self.proxy,
-            headers=self.headers,
+            proxy=None,
+            verify=None,
+            headers=None,
             timeout=self.timeout,
         )
         self.load_response()

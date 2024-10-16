@@ -227,6 +227,7 @@ class TeamGameStreakFinder(Endpoint):
         wrs_opp_stl_nullable="",
         wrs_opp_tov_nullable="",
         proxy=None,
+        verify=None,
         headers=None,
         timeout=30,
         get_request=True,
@@ -432,8 +433,9 @@ class TeamGameStreakFinder(Endpoint):
         self.nba_response = NBAStatsHTTP().send_api_request(
             endpoint=self.endpoint,
             parameters=self.parameters,
-            proxy=self.proxy,
-            headers=self.headers,
+            proxy=None,
+            verify=None,
+            headers=None,
             timeout=self.timeout,
         )
         self.load_response()

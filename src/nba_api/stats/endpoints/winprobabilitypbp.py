@@ -46,6 +46,7 @@ class WinProbabilityPBP(Endpoint):
         game_id,
         run_type=RunType.default,
         proxy=None,
+        verify=None,
         headers=None,
         timeout=30,
         get_request=True,
@@ -62,8 +63,9 @@ class WinProbabilityPBP(Endpoint):
         self.nba_response = NBAStatsHTTP().send_api_request(
             endpoint=self.endpoint,
             parameters=self.parameters,
-            proxy=self.proxy,
-            headers=self.headers,
+            proxy=None,
+            verify=None,
+            headers=None,
             timeout=self.timeout,
         )
         self.load_response()

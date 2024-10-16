@@ -83,11 +83,14 @@ class ScoreBoard(Endpoint):
     games = None
     headers = None
 
-    def __init__(self, proxy=None, headers=None, timeout=30, get_request=True):
+    def __init__(
+        self, proxy=None, verify=None, headers=None, timeout=30, get_request=True
+    ):
         self.proxy = proxy
         if headers is not None:
             self.headers = headers
         self.timeout = timeout
+        self.verify = verify
         if get_request:
             self.get_request()
 
@@ -96,7 +99,8 @@ class ScoreBoard(Endpoint):
             endpoint=self.endpoint_url,
             parameters={},
             proxy=self.proxy,
-            headers=self.headers,
+            verify=self.verify,
+            headers=None,
             timeout=self.timeout,
         )
         self.load_response()

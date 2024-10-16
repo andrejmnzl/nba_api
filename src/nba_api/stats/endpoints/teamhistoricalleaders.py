@@ -39,6 +39,7 @@ class TeamHistoricalLeaders(Endpoint):
         league_id=LeagueID.default,
         season_id=SeasonID.default,
         proxy=None,
+        verify=None,
         headers=None,
         timeout=30,
         get_request=True,
@@ -59,8 +60,9 @@ class TeamHistoricalLeaders(Endpoint):
         self.nba_response = NBAStatsHTTP().send_api_request(
             endpoint=self.endpoint,
             parameters=self.parameters,
-            proxy=self.proxy,
-            headers=self.headers,
+            proxy=None,
+            verify=None,
+            headers=None,
             timeout=self.timeout,
         )
         self.load_response()

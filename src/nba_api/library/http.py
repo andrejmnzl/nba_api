@@ -75,6 +75,7 @@ class NBAHTTP:
         proxy=None,
         headers=None,
         timeout=None,
+        verify=None,
         raise_exception_on_error=False,
     ):
         if not self.base_url:
@@ -109,6 +110,10 @@ class NBAHTTP:
                 "http": request_proxy,
                 "https": request_proxy,
             }
+
+        request_verify = None
+        if verify:
+            request_verify = verify
 
         url = None
         status_code = None
@@ -149,6 +154,7 @@ class NBAHTTP:
                 headers=request_headers,
                 proxies=proxies,
                 timeout=timeout,
+                verify=request_verify,
             )
             url = response.url
             status_code = response.status_code
